@@ -1,0 +1,33 @@
+  
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    some-label: take-home
+spec:
+  containers:
+  - name: jnlp
+    image: jenkins/jnlp-slave:alpine
+  - name: maven
+    image: maven:3.6.3-ibmjava-8-alpine
+    command:
+    - cat
+    tty: true
+  - name: docker
+    image: docker
+    command:
+    - cat
+    tty: true
+    privileged: true
+    volumeMounts:
+    #- mountPath: /home/jenkins/agent/workspace/build-docker-jenkins/src/localhost/docker-jenkins/
+    #  name: stuff
+    - mountPath: /var/run/docker.sock
+      name: dockersock
+  volumes:
+  #- name: stuff
+  #  emptyDir: {}
+  - name: dockersock
+    hostPath:
+      path: /var/run/docker.sock
+      type: File

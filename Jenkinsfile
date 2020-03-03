@@ -33,7 +33,7 @@ pipeline {
         dir("node-master") {
           container('docker') {
           echo "Building docker image ... $repo $DOCKER_AUTH_USR $DOCKER_AUTH_PSW"
-          sh "docker build -t $repo --build-arg branch=master ."
+          sh "docker build --no-cache -t $repo --build-arg branch=master ."
           }
         }
       }

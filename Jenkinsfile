@@ -27,7 +27,7 @@ pipeline {
             steps {
               container('docker') {
                 echo "Building docker image ... $repo $DOCKER_AUTH_USR $DOCKER_AUTH_PSW"
-                sh "docker login -u garreeoke -p Spindlewood&@@^" 
+                sh "docker login -u 'garreeoke' -p 'Spindlewood&@@^'" 
                 sh "docker build -t $repo --build-arg branch=master ."
               }
             }

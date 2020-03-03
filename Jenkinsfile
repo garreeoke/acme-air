@@ -34,7 +34,7 @@ pipeline {
         stage ('Docker Publish') {
             steps {
               container('docker') {
-                sh "docker login -u $DOCKER_AUTH_USER -p $DOCKER_AUTH_PSW" 
+                sh "docker login -u $DOCKER_AUTH_USR -p $DOCKER_AUTH_PSW" 
                sh "docker push $repo"
               }
             }

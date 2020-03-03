@@ -34,8 +34,8 @@ pipeline {
         stage ('Docker Publish') {
             steps {
               container('docker') {
-                sh "docker login -u garreeoke -p Spindlewood&@@^" 
-               sh "docker push $repo"
+                echo "Publishing docker image"
+                sh "docker push $repo"
               }
             }
         }

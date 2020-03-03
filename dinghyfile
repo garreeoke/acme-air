@@ -1,0 +1,61 @@
+{
+	"application": "acmeair",
+	"pipelines": [{
+		"application": "acmeair",
+		"name": "acmeweb1",
+		"expectedArtifacts": [{
+			"defaultArtifact": {
+				"customKind": true
+			},
+			"displayName": "acme-web-k8s-deployment",
+			"matchArtifact": {
+				"artifactAccount": "garreeoke",
+				"customKind": true,
+				"name": "acmeair/acme-air-dep.yml",
+				"type": "github/file"
+			},
+			"useDefaultArtifact": false,
+			"usePriorArtifact": false
+		}],
+		"keepWaitingPipelines": false,
+		"lastModifiedBy": "admin",
+		"limitConcurrent": false,
+		"stages": [{
+			"account": "kubeconfig-dev-sa",
+			"cloudProvider": "kubernetes",
+			"manifestArtifact": {
+				"artifactAccount": "garreeoke",
+				"name": "acmeair/acme-air-dep.yml",
+				"reference": " https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml",
+				"type": "github/file",
+				"version": "master"
+			},
+			"moniker": {
+				"app": "acmeair"
+			},
+			"name": "Deploy (Manifesty)",
+			"refId": "1",
+			"requisiteStageRefIds": [],
+			"skipExpressionEvaluation": false,
+			"source": "artifact",
+			"trafficManagement": {
+				"enabled": false,
+				"options": {
+					"enableTraffic": false,
+					"services": []
+				}
+			},
+			"type": "deployManifest"
+		}],
+		"triggers": [{
+			"branch": "master",
+			"enabled": true,
+			"expectedArtifactIds": [],
+			"project": "garreeoke",
+			"secret": "Armory2020",
+			"slug": "spin-apps",
+			"source": "github",
+			"type": "git"
+		}]
+	}]
+}

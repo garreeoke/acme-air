@@ -52,6 +52,7 @@ pipeline {
         echo "Changing kubernetes yaml"
         dir("${env.WORKSPACE}") {
           sh('''
+            git checkout --track origin/master
             sed -i -E "s/acmenode:.*/$tag/" k8s/acme-air-dep.yml
             git config --global user.email "garreeoke@gmail.com"
             git config --global user.name "$GIT_AUTH_USR"

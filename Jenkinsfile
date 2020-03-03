@@ -50,12 +50,11 @@ pipeline {
     stage ('Update YAML') {
       steps {
         echo "Changing kubernetes yaml"
-        dir("${env.WORKSPACE}/acme-air") {
-          timeout(time: 3, unit: 'MINUTES') {
-              checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/acme-air.git']]])
-          }
+        dir("${env.WORKSPACE}") {
           sh('''
             sed -i -E "s/acmenode:.*/$tag/" k8s/acme-air-dep.yml
+            git config --global user.email "garreeoke@gmail.com"
+            git config --global user.name "$GIT_AUTH_USR"
             git add k8s/acme-air-dep.yml 
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git push 

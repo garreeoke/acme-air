@@ -21,7 +21,8 @@ pipeline {
           steps {
             echo "Checkout Node"
             timeout(time: 3, unit: 'MINUTES') {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/node-master.git']]])
+              checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/node-master.git']]])
+            }
           }
         }
         stage ('Docker Build') {

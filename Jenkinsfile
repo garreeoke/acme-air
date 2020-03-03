@@ -48,12 +48,14 @@ pipeline {
     stage ('Update YAML') {
       steps {
         echo "Changing kubernetes yaml"
+        dir("${env.WORKSPACE}/aQA") {
           sh('''
             sed -i -E "s/acmenode:.*/$tag/" k8s/deployment.yml
             git add deployment.yml 
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git push 
-          ''')    
+          ''') 
+        }    
       }
     }
   }

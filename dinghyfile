@@ -14,7 +14,7 @@
 				"artifactAccount": "garreeoke",
 				"customKind": true,
 				"id": "143b594c-8dd9-47d3-a6a6-90264647b724",
-				"name": "k8s/acme-air-dep.yml",
+				"name": "acmeair/acme-air-dep.yml",
 				"type": "github/file"
 			},
 			"useDefaultArtifact": false,
@@ -29,8 +29,8 @@
 			"manifestArtifact": {
 				"artifactAccount": "garreeoke",
 				"id": "4fa3652b-7e39-4d6e-9dfa-b4c51536bae4",
-				"name": "k8s/acme-air-dep.yml",
-				"reference": " https://api.github.com/repos/garreeoke/acme-air/contents/k8s/acme-air-dep.yml",
+				"name": "acmeair/acme-air-dep.yml",
+				"reference": " https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml",
 				"type": "github/file",
 				"version": "master"
 			},
@@ -59,7 +59,7 @@
 			],
 			"project": "garreeoke",
 			"secret": "Armory2020",
-			"slug": "acme-air",
+			"slug": "spin-apps",
 			"source": "github",
 			"type": "git"
 		}],

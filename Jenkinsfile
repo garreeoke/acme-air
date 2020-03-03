@@ -6,7 +6,7 @@ pipeline {
         home = "/home/jenkins/agent"
         tag = "acmenode:" + "${BUILD_NUMBER}"
         repo = "garreeoke/" + "$tag"
-        GIT_AUTH = credentials('gareeoke-github')
+        GIT_AUTH = credentials('garreeoke-github')
         DOCKER_AUTH = credentials('garreeoke-docker')
     }
     agent {
@@ -15,6 +15,14 @@ pipeline {
       } 
     }
       stages {
+        stage('Checkout Node Master') {
+          steps {
+            echo "Checkout Node"
+            timeout(time: 3, unit: 'MINUTES') {
+              checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/node-master.git']]])
+            }
+          }
+        }
         stage ('Docker Build') {
             steps {
               container('docker') {

@@ -17,8 +17,6 @@ pipeline {
   stages {
     stage('Checkout Node Master') {
       steps {
-        echo "LISTING: "
-        sh "ls -al"
         echo "Checkout Node"
         sh "mkdir ./node-master"
         dir("node-master") {
@@ -50,13 +48,18 @@ pipeline {
     stage ('Update YAML') {
       steps {
         echo "Changing kubernetes yaml"
-        dir("${env.WORKSPACE}") {
+        echo "Checkout Spin-apps"
+        sh "mkdir ./spin-apps"
+        dir("${env.WORKSPACE}/spin-apps") {
+          timeout(time: 3, unit: 'MINUTES') {
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/spin-apps.git']]])
+          }
           sh('''
             git checkout --track origin/master
-            sed -i -E "s/acmenode:.*/$tag/" k8s/acme-air-dep.yml
+            sed -i -E "s/acmenode:.*/$tag/" acmeair/acme-air-dep.yml
             git config --global user.email "garreeoke@gmail.com"
             git config --global user.name "$GIT_AUTH_USR"
-            git add k8s/acme-air-dep.yml 
+            git add acmeair/acme-air-dep.yml 
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git config --local credential.helper "!f() { echo username=\\$GIT_AUTH_USR; echo password=\\$GIT_AUTH_PSW; }; f"
             git push 

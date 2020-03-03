@@ -37,7 +37,7 @@
 			"moniker": {
 				"app": "acmeair"
 			},
-			"name": "Deploy (Manifest)",
+			"name": "Deploy (Manifesty)",
 			"refId": "1",
 			"requisiteStageRefIds": [],
 			"skipExpressionEvaluation": false,

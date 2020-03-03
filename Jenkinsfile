@@ -48,17 +48,12 @@ pipeline {
     stage ('Update YAML') {
       steps {
         echo "Changing kubernetes yaml"
-        sh "mkdir ./acme-air"
-        dir("acme-air") {
           sh('''
-            checkout scm
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/acme-air.git']]])
             sed -i -E "s/acmenode:.*/$tag/" k8s/deployment.yml
             git add deployment.yml 
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git push 
-          ''')
-        }     
+          ''')    
       }
     }
   }

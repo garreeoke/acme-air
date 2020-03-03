@@ -48,7 +48,7 @@ pipeline {
     stage ('Update YAML') {
       steps {
         echo "Changing kubernetes yaml"
-        dir("${env.WORKSPACE}/aQA") {
+        dir("${env.WORKSPACE}") {
           sh('''
             sed -i -E "s/acmenode:.*/$tag/" k8s/deployment.yml
             git add deployment.yml 

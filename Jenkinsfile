@@ -55,7 +55,7 @@ pipeline {
             git checkout --track origin/master
             sed -i -E "s/acmenode:.*/$tag/" k8s/acme-air-dep.yml
             git config --global user.email "garreeoke@gmail.com"
-            git config --global user.name "$GIT_AUTH_USR"
+            git config --global user.name '$GIT_AUTH_USR'
             git add k8s/acme-air-dep.yml 
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git push 

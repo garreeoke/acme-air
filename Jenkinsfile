@@ -28,9 +28,11 @@ pipeline {
     }
     stage ('Docker Build') {
       steps {
-        container('docker') {
+        dir("node-master") {
+          container('docker') {
           echo "Building docker image ... $repo $DOCKER_AUTH_USR $DOCKER_AUTH_PSW"
           sh "docker build -t $repo --build-arg branch=master ."
+          }
         }
       }
     }

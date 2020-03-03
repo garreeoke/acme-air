@@ -19,6 +19,7 @@ pipeline {
       stages {
         stage('Checkout Node Master') {
           steps {
+               echo "SHITHEAD"
                timeout(time: 3, unit: 'MINUTES') {
                 checkout([
                     $class: 'GitSCM',

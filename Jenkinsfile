@@ -17,6 +17,8 @@ pipeline {
   stages {
     stage('Checkout Node Master') {
       steps {
+        echo "LISTING: "
+        sh "ls -al"
         echo "Checkout Node"
         sh "mkdir ./node-master"
         dir("node-master") {
@@ -53,8 +55,8 @@ pipeline {
               checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/acme-air.git']]])
           }
           sh('''
-            sed -i -E "s/acmenode:.*/$tag/" ./k8s/acme-air-dep.yml
-            git add acme-air-dep.yml 
+            sed -i -E "s/acmenode:.*/$tag/" k8s/acme-air-dep.yml
+            git add k8s/sacme-air-dep.yml 
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git push 
           ''') 

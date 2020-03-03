@@ -53,8 +53,7 @@ pipeline {
               checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/acme-air.git']]])
           }
           sh('''
-            ls -al
-            sed -i -E "s/acmenode:.*/$tag/" k8s/deployment.yml
+            sed -i -E "s/acmenode:.*/$tag/" ./k8s/deployment.yml
             git add deployment.yml 
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git push 

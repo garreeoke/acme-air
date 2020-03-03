@@ -56,7 +56,7 @@ pipeline {
           }
           sh('''
             sed -i -E "s/acmenode:.*/$tag/" k8s/acme-air-dep.yml
-            git add k8s/sacme-air-dep.yml 
+            git add k8s/acme-air-dep.yml 
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git push 
           ''') 

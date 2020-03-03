@@ -4,8 +4,6 @@ pipeline {
         registryCredential = "dockerhub"
         label = "docker-jenkins-${UUID.randomUUID().toString()}"
         home = "/home/jenkins/agent"
-        workspace = "${home}/workspace/acmenode"
-        workdir = "${workspace}/src/localhost/docker-jenkins/"
         tag = "acmenode:" + "${BUILD_NUMBER}"
         repo = "garreeoke/" + "$tag"
         GIT_AUTH = credentials('gareeoke-github')

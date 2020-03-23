@@ -2,7 +2,7 @@
 	"application": "acmeair",
 	"pipelines": [{
 		"application": "acmeair",
-		"name": "acmeweb1",
+		"name": "acmenode",
 		"expectedArtifacts": [{
 			"defaultArtifact": {
 				"customKind": true

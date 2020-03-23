@@ -2,7 +2,7 @@
 	"application": "acmeair",
 	"globals": {
 		"githubAccount": "garreeoke",
-		"artifactPath": "spin-apps/acmeair/acme-air-dep.yml",
+		"artifactPath": "spin-apps/acmeair/acme-air-dep.yml"
 	},
 	"pipelines": [{
 		"application": "acmeair",

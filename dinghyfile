@@ -1,8 +1,5 @@
 {
 	"application": "acmeair",
-	"globals": {
-		"reference": "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml"
-	},
 	"pipelines": [{
 		"application": "acmeair",
 		"name": "acmenode",
@@ -13,7 +10,7 @@
 		"lastModifiedBy": "admin",
 		"limitConcurrent": false,
 		"stages": [
-			{{ module "k8s.deploymanifest.stage.module" "k8sProviderName" "kubeconfig-dev-sa" "app" "acmeair" "stageName" "Deploy_AcmeNode_Production" "stageOrder" 1 }}
+			{{ module "k8s.deploymanifest.stage.module" "k8sProviderName" "kubeconfig-dev-sa" "app" "acmeair" "stageName" "Deploy_AcmeNode_Production" "stageOrder" 1 "expectedArtifactId" "some-artifact-id"}}
 		],
 		"triggers": [
 			{{ module "github.trigger.module" "branch" "master" "project" "garreeoke" "secret" "Armory2020" "slug" "spin-apps" "expectedArtifactId" "some-artifact-id" }}

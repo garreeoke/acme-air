@@ -1,14 +1,10 @@
 {
 	"application": "acmeair",
-	"globals": {
-		"githubAccount": "garreeoke",
-		"artifactPath": "spin-apps/acmeair/acme-air-dep.yml"
-	},
 	"pipelines": [{
 		"application": "acmeair",
 		"name": "acmenode",
 		"expectedArtifacts": [
-			{{ module "github.expectedart.module" }}
+			{{ module "github.expectedart.module" "artifactPath" "spin-apps/acmeair/acme-air-dep.yml" "expectedArtifactId" "spin-apps/acmeair/acme-air-dep.yml"}}
 		],
 		"keepWaitingPipelines": false,
 		"lastModifiedBy": "admin",
@@ -17,7 +13,7 @@
 			{{ module "k8s.deploymanifest.stage.module" "k8sProviderName" "kubeconfig-dev-sa" "app" "acmeair" "stageName" "Deploy_AcmeNode_Prod" "stageOrder" 1 }}
 		],
 		"triggers": [
-			{{ module "github.trigger.module" "branch" "master" "project" "garreeoke" "secret" "Armory2020" "slug" "spin-apps" }}
+			{{ module "github.trigger.module" "branch" "master" "project" "garreeoke" "secret" "Armory2020" "slug" "spin-apps" "expectedArtifactId" "spin-apps/acmeair/acme-air-dep.yml" }}
 		]
 	}]
 }

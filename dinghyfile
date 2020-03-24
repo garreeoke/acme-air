@@ -14,7 +14,7 @@
 		"lastModifiedBy": "admin",
 		"limitConcurrent": false,
 		"stages": [
-			{{ module "k8s.deploymanifest.stage.module" "k8sProviderName" "kubeconfig-dev-sa" "app" "acmeair" "stageName" "Deploy_To_Prod" "stageOrder" 1 }}
+			{{ module "k8s.deploymanifest.stage.module" "k8sProviderName" "kubeconfig-dev-sa" "app" "acmeair" "stageName" "Deploy_To_Production" "stageOrder" 1 }}
 		],
 		"triggers": [
 			{{ module "github.trigger.module" "branch" "master" "project" "garreeoke" "secret" "Armory2020" "slug" "spin-apps" }}

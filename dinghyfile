@@ -1,5 +1,8 @@
 {
 	"application": "acmeair",
+	"globals": {
+		"reference": "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml"
+	}
 	"pipelines": [{
 		"application": "acmeair",
 		"name": "acmenode",

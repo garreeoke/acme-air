@@ -4,7 +4,7 @@
 		"application": "acmeair",
 		"name": "acmenode",
 		"expectedArtifacts": [
-			{{ module "github.expectedart.module" "displayName" "acmenode-deployment" "artifactPath" "spin-apps/acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "githubAccount" "garreeoke" }}
+			{{ module "github.expectedart.module" "displayName" "acmenode-deployment" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "githubAccount" "garreeoke" "reference" "https://api.github.com/repos/garreeoke/spin-apps/acmeair/contents/acme-air-dep.yml" }}
 		],
 		"keepWaitingPipelines": false,
 		"lastModifiedBy": "admin",

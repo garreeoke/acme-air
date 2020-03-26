@@ -1,10 +1,13 @@
 {
 	"application": "acmeair",
+	"globals": {
+		"reference": "https://api.github.com/repos/garreeoke/spin-apps/acmeair/contents/acme-air-dep.yml"
+	}
 	"pipelines": [{
 		"application": "acmeair",
 		"name": "acmenode",
 		"expectedArtifacts": [
-			{{ module "github.expectedart.module" "displayName" "acmenode-deployment" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "githubAccount" "garreeoke" "reference" "https://api.github.com/repos/garreeoke/spin-apps/acmeair/contents/acme-air-dep.yml" }}
+			{{ module "github.expectedart.module" "displayName" "acmenode-deployment" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "githubAccount" "garreeoke" }}
 		],
 		"keepWaitingPipelines": false,
 		"lastModifiedBy": "admin",

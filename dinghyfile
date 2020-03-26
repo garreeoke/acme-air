@@ -1,22 +1,30 @@
 {
 	"application": "acmeair",
 	"globals": {
-		"stageName": "DeployAcmeNodeProd3"
+		"displayName": "acmenode-deployment",
+		"artifactPath": "acmeair/acme-air-dep.yml",
+		"expectedArtifactId": "some-artifact-id",
+		"reference": "https://api.github.com/repos/garreeoke/spin-apps/acmeair/contents/acme-air-dep.yml",
+		"githubAccount": "garreeoke",
+		"k8sProviderName": "kubeconfig-dev-sa",
+		"app": "acmeair",
+		"expectedArtifactId": "some-artifact-id",
+		"branch": "master"
 	},
 	"pipelines": [{
 		"application": "acmeair",
 		"name": "acmenode",
 		"expectedArtifacts": [
-			{{ module "github.expectedart.module" "displayName" "acmenode-deployment" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "githubAccount" "garreeoke" "reference" "https://api.github.com/repos/garreeoke/spin-apps/acmeair/contents/acme-air-dep.yml"}}
+			{{ module "github.expectedart.module" }}
 		],
 		"keepWaitingPipelines": false,
 		"lastModifiedBy": "admin",
 		"limitConcurrent": false,
 		"stages": [
-			{{ module "k8s.deploymanifest.stage.module" "k8sProviderName" "kubeconfig-dev-sa" "app" "acmeair" "expectedArtifactId" "some-artifact-id" "stageOrder" 1 }}
+			{{ module "k8s.deploymanifest.stage.module" "stageOrder" 1 "stageName" "DeployAcmeNodeProd"}}
 		],
 		"triggers": [
-			{{ module "github.trigger.module" "branch" "master" "project" "garreeoke" "secret" "Armory2020" "slug" "spin-apps" "expectedArtifactId" "some-artifact-id" }}
+			{{ module "github.trigger.module" "project" "garreeoke" "secret" "Armory2020" "slug" "spin-apps" }}
 		]
 	}]
 }

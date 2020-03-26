@@ -1,7 +1,7 @@
 {
 	"application": "acmeair",
 	"globals": {
-		"stageName": "Deploy_AcmeNodeProd1"
+		"stageName": "Deploy_AcmeNode_Prod2"
 	}
 	"pipelines": [{
 		"application": "acmeair",

@@ -6,7 +6,7 @@
 		"expectedArtifactId": "some-artifact-id",
 		"githubAccount": "garreeoke",
 		"k8sProviderName": "kubeconfig-dev-sa",
-		"dockerProviderName": "garreeoke-docker"
+		"dockerProviderName": "garreeoke-docker",
 		"app": "acmeair",
 		"branch": "master"
 	},

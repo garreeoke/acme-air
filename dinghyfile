@@ -6,6 +6,7 @@
 		"expectedArtifactId": "some-artifact-id",
 		"githubAccount": "garreeoke",
 		"k8sProviderName": "kubeconfig-dev-sa",
+		"dockerProviderName": "garreeoke-docker"
 		"app": "acmeair",
 		"branch": "master"
 	},
@@ -37,7 +38,7 @@
 				{{ module "k8s.delete_manifest.module" "objectType" "namespace" "objectName" "acme-air-${trigger['tag']}" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-full.yml" "stageOrder" 3 "stageName" "DeleteFullAcmeAir" "previousStage" 2 }}
 			],
 			"triggers": [
-				{{ module "github.trigger.module" "project" "garreeoke" "secret" "Armory2020" "slug" "spin-apps" }}
+				{{ module "docker.trigger.module" "dockerOrg" "garreeoke" "dockerRegistry" "index.docker.io" "repository" "garreeoke/acmenode" "dockerTag" "pr.*" }}
 			]
 		}
 	]

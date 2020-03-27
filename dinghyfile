@@ -17,7 +17,7 @@
 			"keepWaitingPipelines": false,
 			"limitConcurrent": false,
 			"stages": [
-				{{ module "k8s.deploymanifest.stage.module" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "stageOrder" 1 "stageName" "DeployAcmeNodeProd4" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml"}}
+				{{ module "k8s.deploymanifest.stage.module" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "stageOrder" 1 "stageName" "DeployAcmeNodeProd5" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml"}}
 			],
 			"triggers": [
 				{{ module "github.trigger.module" "project" "garreeoke" "secret" "Armory2020" "slug" "spin-apps" }}

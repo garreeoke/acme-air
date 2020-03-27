@@ -7,7 +7,6 @@
 		"githubAccount": "garreeoke",
 		"k8sProviderName": "kubeconfig-dev-sa",
 		"app": "acmeair",
-		"expectedArtifactId": "some-artifact-id",
 		"branch": "master"
 	},
 	"pipelines": [

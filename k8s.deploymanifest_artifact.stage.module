@@ -1,0 +1,26 @@
+{
+	"account": "{{ var "k8sProviderName" }}",
+	"cloudProvider": "kubernetes",
+	 "manifestArtifact": {
+        "artifactAccount": "{{ var "githubAccount" }}",
+        "name": "{{ var "artifactPath" }}",
+        "reference": "{{ var "reference" }}",
+        "type": "github/file"
+      },
+	"moniker": {
+				"app": "{{ var "app" }}"
+	},
+	"name": "{{ var "stageName" }}",
+	"refId": "{{ var "stageOrder" }}",
+	"requisiteStageRefIds": [],
+	"skipExpressionEvaluation": false,
+	"source": "artifact",
+	"trafficManagement": {
+		"enabled": false,
+		"options": {
+			"enableTraffic": false,
+			"services": []
+		}
+	},
+	"type": "deployManifest"
+}

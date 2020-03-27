@@ -4,7 +4,7 @@
 		"displayName": "acmenode-deployment",
 		"githubAccount": "garreeoke",
 		"app": "acmeair",
-		"k8sProviderName" "kubeconfig-dev-sa",
+		"k8sProviderName": "kubeconfig-dev-sa",
 		"branch": "master"
 	},
 	"pipelines": [

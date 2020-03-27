@@ -1,7 +1,6 @@
 {
 	"application": "acmeair",
 	"globals": {
-		"displayName": "acmenode-deployment",
 		"githubAccount": "garreeoke",
 		"app": "acmeair",
 		"k8sProviderName": "kubeconfig-dev-sa",
@@ -12,7 +11,7 @@
 			"application": "acmeair",
 			"name": "acmenode",
 			"expectedArtifacts": [
-				{{ module "github.expectedart.module" }}
+				{{ module "github.expectedart.module" "expectedArtifactId" "some-artifact-id" "displayName" "acmenode-deployment" "artifactPath" "acmeair/acme-air-dep.yml" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml"}}
 			],
 			"keepWaitingPipelines": false,
 			"limitConcurrent": false,

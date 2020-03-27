@@ -38,7 +38,7 @@
 				{{ module "k8s.delete_manifest.module" "objectType" "namespace" "objectName" "acme-air-${trigger['tag']}" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-full.yml" "stageOrder" 3 "stageName" "DeleteFullAcmeAir" "previousStage" 2 }}
 			],
 			"triggers": [
-				{{ module "docker.trigger.module" "dockerOrg" "garreeoke" "dockerRegistry" "index.docker.io" "repository" "garreeoke/acmenode" "dockerTag" "pr.*" }}
+				{{ module "docker.trigger.module" "dockerOrg" "garreeoke" "dockerRegistry" "index.docker.io" "image" "garreeoke/acmenode" "dockerTag" "pr.*" }}
 			]
 		}
 	]

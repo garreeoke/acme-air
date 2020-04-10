@@ -26,7 +26,7 @@
 			"manifestArtifact": {
 				"artifactAccount": "garreeoke",
 				"name": "acmeair/acme-air-dep.yml",
-				"reference": " https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml",
+				"reference": "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml",
 				"type": "github/file",
 				"version": "master"
 			},

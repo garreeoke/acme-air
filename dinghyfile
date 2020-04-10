@@ -34,7 +34,7 @@
 				{{ module "k8s.delete_manifest.module" "objectType" "namespace" "objectName" "acme-air-${trigger['tag']}" "stageOrder" 3 "stageName" "DeleteFullAcmeAir1" "previousStage" 2 }}
 			],
 			"triggers": [
-				{{ module "docker.trigger.module" "dockerProviderName" "garreeoke-docker" "dockerOrg" "garreeoke" "dockerRegistry" "index.docker.io" "image" "garreeoke/acmenode" "dockerTag" "pr.*" }}
+				{{ module "docker.trigger.module" "dockerProviderName" "garreeoke-armory-docker" "dockerOrg" "garreeoke" "dockerRegistry" "index.docker.io" "image" "garreeoke/acmenode" "dockerTag" "pr.*" }}
 			]
 		}
 	]

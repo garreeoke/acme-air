@@ -16,7 +16,7 @@
 			"keepWaitingPipelines": false,
 			"limitConcurrent": false,
 			"parameterConfig": [
-				{{ module "param_config.module" }}
+				{{ module "param_config.module" "paramName" "ticket" }}
 			],
 			"stages": [
 				{{ module "k8s.deploymanifest.stage.module" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "stageOrder" 1 "stageName" "DeployAcmeNodeToProd" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml"}}

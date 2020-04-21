@@ -42,7 +42,7 @@
                 
                 {{ module "terraform.stage.module" "stageOrder" 5 "previousStage" 1 "stageName" "TF-Plan-GCP-VM" "terraformAction" "plan" "env_name" "${parameters.workspace}-$parameters.environment_name}" "terraformVersion" "0.12.20" "workspace" "${parameters.workspace}" "artifactName" "main.tf" "artifactPath" "https://api.github.com/repos/garreeoke/armory-terraform/contents/main.tf" "expectedArtifactId" "terraform-artifact-id" "displayName" "planfile"  }},
 
-                {{ module "terraform.stage.module" "stageOrder" 6 "previousStage" 5 "stageName" "TF-Apply-GCP-VM" "terraformAction" "apply" "env_name" "${parameters.workspace}-$parameters.environment_name}" "terraformVersion" "0.12.20" "workspace" "${parameters.workspace}" "artifactName" "main.tf" "artifactPath" "https://api.github.com/repos/garreeoke/armory-terraform/contents/main.tf" }},
+                {{ module "terraform.stage.module" "stageOrder" 6 "previousStage" 5 "stageName" "TF1-Apply-GCP-VM" "terraformAction" "apply" "env_name" "${parameters.workspace}-$parameters.environment_name}" "terraformVersion" "0.12.20" "workspace" "${parameters.workspace}" "artifactName" "main.tf" "artifactPath" "https://api.github.com/repos/garreeoke/armory-terraform/contents/main.tf" }},
 
 				{{ module "k8s.delete_manifest.module" "objectType" "namespace" "objectName" "acme-air-${trigger['tag']}" "stageOrder" 3 "stageName" "DeleteFullAcmeAir1" "previousStage" 2 }}
 			],

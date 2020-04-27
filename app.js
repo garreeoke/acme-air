@@ -117,12 +117,8 @@ router.get('/config/countAirports' , routes.countAirports);
 router.get('/loader/load', startLoadDatabase);
 router.get('/loader/query', loader.getNumConfiguredCustomers);
 router.get('/checkstatus', checkStatus);
-
 // Prometheus
-router.get('/metrics', (req, res) => {
-	res.set('Content-Type', client.register.Content-Type)
-	res.end(client.register.metrics())
-})
+router.get('/metrics', routes.metrics);
 
 if (authService && authService.hystrixStream)
 	app.get('/rest/api/hystrix.stream', authService.hystrixStream);

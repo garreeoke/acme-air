@@ -72,6 +72,11 @@ module.exports = function (dbtype, authService, settings) {
 		});
 	}
 
+	module.metrics = function(req, res) {
+	  res.set('Content-Type', client.register.Content-Type)
+	  res.end(client.register.metrics())
+    }
+
 	module.login = function(req, res) {
 		logger.debug('logging in user');
 		var login = req.body.login;

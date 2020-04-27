@@ -144,7 +144,7 @@ else
 // Prometheus
 function metrics(req, res) {
 	logger.info("metric function called")
-	res.set('Content-Type', client.register.Content-Type)
+	res.set('Content-Type', client.register.contentType)
 	res.end(client.register.metrics())
 }
 

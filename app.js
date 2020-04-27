@@ -53,6 +53,7 @@ var dbtype = process.env.dbtype || "mongo";
 const client = require('prom-client');
 const collectDefaultMetrics = client.collectDefaultMetrics;
 collectDefaultMetrics({ timeout: 5000 });
+logger.info("metrics configured")
 
 // Calculate the backend datastore type if run inside BLuemix or cloud foundry
 if(process.env.VCAP_SERVICES){

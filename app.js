@@ -118,7 +118,7 @@ router.get('/loader/load', startLoadDatabase);
 router.get('/loader/query', loader.getNumConfiguredCustomers);
 router.get('/checkstatus', checkStatus);
 // Prometheus
-router.get('/metrics', routes.metrics);
+router.get('/metrics', metrics);
 
 if (authService && authService.hystrixStream)
 	app.get('/rest/api/hystrix.stream', authService.hystrixStream);
@@ -140,6 +140,11 @@ if (authService && authService.initialize)
 else
 	initDB();
 
+// Prometheus
+function metrics(req, res) {
+	res.set('Content-Type', client.register.Content-Type)
+	res.end(client.register.metrics())
+}
 
 function checkStatus(req, res){
 	res.sendStatus(200);

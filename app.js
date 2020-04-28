@@ -69,10 +69,7 @@ logger.info("db type=="+dbtype);
 
 var routes = new require('./routes/index.js')(dbtype, authService,settings);
 var loader = new require('./loader/loader.js')(routes, settings);
-var Prometheus = require('./prometheus/prometheus.js')
 
-app.use(Prometheus.requestCounters);
-app.use(Prometheus.responseCounters);
 // Setup express with 4.0.0
 
 var app = express();
@@ -80,6 +77,11 @@ var morgan         = require('morgan');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser')
+
+// Prometheus
+var Prometheus = require('./prometheus/prometheus.js')
+app.use(Prometheus.requestCounters);
+app.use(Prometheus.responseCounters);
 
 app.use(express.static(__dirname + '/public'));     	// set the static files location /public/img will be /img for users
 if (settings.useDevLogger)
@@ -125,6 +127,7 @@ router.get('/checkstatus', checkStatus);
 //router.get('/metrics', metrics);
 Prometheus.injectMetricsRoute(router)
 Prometheus.startCollection()
+
 if (authService && authService.hystrixStream)
 	app.get('/rest/api/hystrix.stream', authService.hystrixStream);
 

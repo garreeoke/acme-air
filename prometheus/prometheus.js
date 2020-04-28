@@ -5,8 +5,7 @@ var Register = require('prom-client').register;
 var Counter = require('prom-client').Counter;  
 var Histogram = require('prom-client').Histogram;  
 var Summary = require('prom-client').Summary;  
-var ResponseTime = require('response-time');  
-var Logger = require('./logger');
+var ResponseTime = require('response-time');
 
 /**
  * A Prometheus counter that counts the invocations of the different HTTP verbs
@@ -41,7 +40,7 @@ module.exports.responses = responses = new Summary({
  * This funtion will start the collection of metrics and should be called from within in the main js file
  */
 module.exports.startCollection = function () {  
-    Logger.log(Logger.LOG_INFO, `Starting the collection of metrics, the metrics are available on /metrics`);
+    //Logger.log(Logger.LOG_INFO, `Starting the collection of metrics, the metrics are available on /metrics`);
     require('prom-client').collectDefaultMetrics();
 };
 

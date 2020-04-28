@@ -50,10 +50,10 @@ if (authServiceLocation)
 var dbtype = process.env.dbtype || "mongo";
 
 // Metrics
-const client = require('prom-client');
-const collectDefaultMetrics = client.collectDefaultMetrics;
-collectDefaultMetrics({ timeout: 5000 });
-logger.info("metrics configured")
+//const client = require('prom-client');
+//const collectDefaultMetrics = client.collectDefaultMetrics;
+//collectDefaultMetrics({ timeout: 5000 });
+//logger.info("metrics configured")
 
 // Calculate the backend datastore type if run inside BLuemix or cloud foundry
 if(process.env.VCAP_SERVICES){
@@ -69,7 +69,10 @@ logger.info("db type=="+dbtype);
 
 var routes = new require('./routes/index.js')(dbtype, authService,settings);
 var loader = new require('./loader/loader.js')(routes, settings);
+var Prometheus = require('./prometheus/prometheus.js')
 
+app.use(Prometheus.requestCounters);
+app.use(Prometheus.responseCounters);
 // Setup express with 4.0.0
 
 var app = express();
@@ -119,8 +122,9 @@ router.get('/loader/load', startLoadDatabase);
 router.get('/loader/query', loader.getNumConfiguredCustomers);
 router.get('/checkstatus', checkStatus);
 // Prometheus
-router.get('/metrics', metrics);
-
+//router.get('/metrics', metrics);
+Prometheus.injectMetricsRoute(router)
+Prometheus.startCollection()
 if (authService && authService.hystrixStream)
 	app.get('/rest/api/hystrix.stream', authService.hystrixStream);
 
@@ -142,11 +146,10 @@ else
 	initDB();
 
 // Prometheus
-function metrics(req, res) {
-	logger.info("metric function called")
-	res.set('Content-Type', client.register.contentType)
-	res.end(client.register.metrics())
-}
+//function metrics(req, res) {
+//	res.set('Content-Type', client.register.contentType)
+//	res.end(client.register.metrics())
+//}
 
 function checkStatus(req, res){
 	res.sendStatus(200);

@@ -49,6 +49,12 @@ if (authServiceLocation)
 
 var dbtype = process.env.dbtype || "mongo";
 
+// Metrics
+//const client = require('prom-client');
+//const collectDefaultMetrics = client.collectDefaultMetrics;
+//collectDefaultMetrics({ timeout: 5000 });
+//logger.info("metrics configured")
+
 // Calculate the backend datastore type if run inside BLuemix or cloud foundry
 if(process.env.VCAP_SERVICES){
 	var env = JSON.parse(process.env.VCAP_SERVICES);
@@ -71,6 +77,11 @@ var morgan         = require('morgan');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser')
+
+// Prometheus
+var Prometheus = require('./prometheus/prometheus.js')
+app.use(Prometheus.requestCounters);
+app.use(Prometheus.responseCounters);
 
 app.use(express.static(__dirname + '/public'));     	// set the static files location /public/img will be /img for users
 if (settings.useDevLogger)
@@ -112,6 +123,10 @@ router.get('/config/countAirports' , routes.countAirports);
 router.get('/loader/load', startLoadDatabase);
 router.get('/loader/query', loader.getNumConfiguredCustomers);
 router.get('/checkstatus', checkStatus);
+// Prometheus
+//router.get('/metrics', metrics);
+Prometheus.injectMetricsRoute(router)
+Prometheus.startCollection()
 
 if (authService && authService.hystrixStream)
 	app.get('/rest/api/hystrix.stream', authService.hystrixStream);
@@ -133,6 +148,11 @@ if (authService && authService.initialize)
 else
 	initDB();
 
+// Prometheus
+//function metrics(req, res) {
+//	res.set('Content-Type', client.register.contentType)
+//	res.end(client.register.metrics())
+//}
 
 function checkStatus(req, res){
 	res.sendStatus(200);

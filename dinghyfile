@@ -37,7 +37,7 @@
 				{{ module "param_config.module" "paramName" "workspace" "paramDefaultValue" "acme"}}
 			],
 			"stages": [
-				{{ module "k8.deploymanifest_artifact.stage.module" "artifactPath" "acmeair/acme-air-full.yml" "stageOrder" 1 "stageName" "DeployFullAcmeAir1" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-full.yml" }},
+				{{ module "k8.deploymanifest_artifact.stage.module" "artifactPath" "acmeair/acme-air-full.yml" "stageOrder" 1 "stageName" "DeployFullAcmeAir" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-full.yml" }},
 
 				{{ module "single.manual_judgement.module" "stageOrder" 2 "stageName" "Hold for Testing" "instruction" "Click done when your testing is complete" "judgementInput" "Done" "previousStage" 1 }},
 

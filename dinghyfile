@@ -38,11 +38,8 @@
 			],
 			"stages": [
 				{{ module "k8.deploymanifest_artifact.stage.module" "artifactPath" "acmeair/acme-air-full.yml" "stageOrder" 1 "stageName" "DeployFullAcmeAir" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-full.yml" }},
-
 				{{ module "single.manual_judgement.module" "stageOrder" 2 "stageName" "Hold for Testing" "instruction" "Click done when your testing is complete" "judgementInput" "Done" "previousStage" 1 }},
-
-				{{ module "k8s.delete_manifest.module" "objectType" "namespace" "objectName" "acme-air-${trigger['tag']}" "stageOrder" 3 "stageName" "DeleteFullAcmeAir1" "previousStage" 2 }},
-
+				{{ module "k8s.delete_manifest.module" "objectType" "namespace" "objectName" "acme-air-${trigger['tag']}" "stageOrder" 3 "stageName" "DeleteFullAcmeAir1" "previousStage" 2 }}
 			],
 			"triggers": [
 				{{ module "docker.trigger.module" "dockerProviderName" "garreeoke-armory-docker" "dockerOrg" "garreeoke" "dockerRegistry" "index.docker.io" "image" "garreeoke/acmenode" "dockerTag" "pr.*" }}

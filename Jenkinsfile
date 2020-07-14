@@ -48,7 +48,7 @@ pipeline {
     stage ('Update YAML') {
       steps {
         echo "Changing kubernetes yaml"
-        echo "Checkout Spin-apps"
+        echo "Checkout Spin-apps ..."
         sh "mkdir ./spin-apps"
         dir("${env.WORKSPACE}/spin-apps") {
           timeout(time: 3, unit: 'MINUTES') {

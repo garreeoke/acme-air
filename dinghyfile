@@ -9,14 +9,15 @@
 	"pipelines": [
 		{
 			"application": "acmeair",
-			"name": "acmenode",
+			"name": "acmenode-prod",
 			"expectedArtifacts": [
 				{{ module "github.expectedart.module" "expectedArtifactId" "some-artifact-id" "displayName" "acmenode-deployment" "artifactPath" "acmeair/acme-air-dep.yml" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml" "version" "master"}}
 			],
 			"keepWaitingPipelines": false,
 			"limitConcurrent": false,
 			"parameterConfig": [
-				{{ module "param_config.module" "paramName" "ticket" }}
+				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "1" }},
+				{{ module "param_config.module" "paramName" "environment_name" "paramDefaultValue" "production" }}
 			],
 			"stages": [
 				{{ module "k8s.deploymanifest.stage.module" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "stageOrder" 1 "stageName" "DeployToProd" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml"}}
@@ -32,9 +33,9 @@
 			"keepWaitingPipelines": false,
 			"limitConcurrent": false,
 			"parameterConfig": [
-				{{ module "param_config.module" "paramName" "ticket" }},
+				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "${trigger['tag']}" }},
 				{{ module "param_config.module" "paramName" "environment_name" "paramDefaultValue" "tester" }},
-				{{ module "param_config.module" "paramName" "workspace" "paramDefaultValue" "acme"}}
+				{{ module "param_config.module" "paramName" "workspace" "paramDefaultValue" "${trigger['tag']}"" }}
 			],
 			"stages": [
 				{{ module "k8.deploymanifest_artifact.stage.module" "artifactPath" "acmeair/acme-air-full.yml" "stageOrder" 1 "stageName" "DeployFullAcmeAir1" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-full.yml" }},

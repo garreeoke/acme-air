@@ -43,7 +43,7 @@
 				{{ module "terraform.stage.module" "stageOrder" 3 "previousStage" 2 "stageName" "TF-Apply-GCP-VM" "terraformAction" "apply" "env_name" "${parameters.workspace}-$parameters.environment_name}" "terraformVersion" "0.12.21" "workspace" "${parameters.workspace}" "artifactName" "main.tf" "artifactPath" "https://api.github.com/repos/garreeoke/armory-terraform/contents/main.tf" }},
 				{{ module "single.manual_judgement.module" "stageOrder" 4 "stageName" "Hold for Testing" "instruction" "Click done when your testing is complete" "judgementInput" "Done" "previousStage" 3 }},
 				{{ module "k8s.delete_manifest.module" "objectType" "namespace" "objectName" "acme-air-${trigger['tag']}" "stageOrder" 5 "stageName" "DeleteFullAcmeAir1" "previousStage" 4}},
-				{{ module "terraform.stage.module" "stageOrder" 6 "previousStage" 4 "stageName" "TF1-Destroy-GCP-VM" "terraformAction" "destroy" "env_name" "${parameters.workspace}-$parameters.environment_name}" "terraformVersion" "0.12.21" "workspace" "${parameters.workspace}" "artifactName" "main.tf" "artifactPath" "https://api.github.com/repos/garreeoke/armory-terraform/contents/main.tf" "fail_pipeline" false }}
+				{{ module "terraform.stage.module" "stageOrder" 6 "previousStage" 4 "stageName" "TF1-Destroy-GCP-VM" "terraformAction" "destroy" "env_name" "${parameters.workspace}-$parameters.environment_name}" "terraformVersion" "0.12.21" "workspace" "${parameters.workspace}" "artifactName" "main.tf" "artifactPath" "https://api.github.com/repos/garreeoke/armory-terraform/contents/main.tf" }}
 			],
 			"triggers": [
 				{{ module "docker.trigger.module" "dockerProviderName" "garreeoke-armory-docker" "dockerOrg" "garreeoke" "dockerRegistry" "index.docker.io" "image" "garreeoke/acmenode" "dockerTag" "pr.*" }}

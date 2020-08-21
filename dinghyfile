@@ -16,7 +16,7 @@
 			"keepWaitingPipelines": false,
 			"limitConcurrent": false,
 			"parameterConfig": [
-				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "" "paramDescription" "PR number" }},
+				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "paramDescription" "PR number" }},
 				{{ module "param_config.module" "paramName" "environment_name" "paramDefaultValue" "Prod" "paramDescription" "What environment is this deploying to?" }}
 			],
 			"stages": [
@@ -33,7 +33,7 @@
 			"keepWaitingPipelines": false,
 			"limitConcurrent": false,
 			"parameterConfig": [
-				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "${trigger['tag']}" "paramDefaultValue" "" "paramDescription" "PR number" }},
+				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "${trigger['tag']}" "paramDefaultValue" "paramDescription" "PR number" }},
 				{{ module "param_config.module" "paramName" "environment_name" "paramDefaultValue" "Dev" "paramDescription" "What environment is this deploying to?" }},
 				{{ module "param_config.module" "paramName" "workspace" "paramDefaultValue" "acme" }}
 			],

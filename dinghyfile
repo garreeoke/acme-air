@@ -9,7 +9,7 @@
 	"pipelines": [
 		{
 			"application": "acmeair",
-			"name": "acmenode",
+			"name": "acmenode-prod",
 			"expectedArtifacts": [
 				{{ module "github.expectedart.module" "expectedArtifactId" "some-artifact-id" "displayName" "acmenode-deployment" "artifactPath" "acmeair/acme-air-dep.yml" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml" "version" "master"}}
 			],

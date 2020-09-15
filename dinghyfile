@@ -16,7 +16,7 @@
 			"keepWaitingPipelines": false,
 			"limitConcurrent": false,
 			"parameterConfig": [
-				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "" "paramDescription" "ticket number" }},
+				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "" "paramDescription" "ticket number please" }},
 				{{ module "param_config.module" "paramName" "environment_name" "paramDefaultValue" "Prod" "paramDescription" "What environment is this deploying to?" }}
 			],
 			"stages": [

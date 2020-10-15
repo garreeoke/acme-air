@@ -20,7 +20,7 @@
 				{{ module "param_config.module" "paramName" "environment_name" "paramDefaultValue" "Prod" "paramDescription" "What environment is this deploying to?" }}
 			],
 			"stages": [
-				{{ module "single.manual_judgement.module" "stageOrder" 1 "stageName" "Hold for Approval" "instruction" "Ready for Prod" "judgementInput" "Ready" }},
+				{{ module "single.manual_judgement.module" "stageOrder" 1 "stageName" "Hold for Approval" "instruction" "Ready to push to Prod" "judgementInput" "Ready" }},
 				{{ module "k8s.deploymanifest.stage.module" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "stageOrder" 2 "stageName" "DeployToProd" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml"}}
 			],
 			"triggers": [

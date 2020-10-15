@@ -3,7 +3,7 @@
 	"globals": {
 		"githubAccount": "garreeoke",
 		"app": "acmeair",
-		"k8sProviderName": "gke-aaront-1",
+		"k8sProviderName": "gke-aaront",
 		"branch": "master"
 	},
 	"pipelines": [

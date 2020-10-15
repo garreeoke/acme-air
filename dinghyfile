@@ -20,7 +20,7 @@
 				{{ module "param_config.module" "paramName" "environment_name" "paramDefaultValue" "Prod" "paramDescription" "What environment is this deploying to?" }}
 			],
 			"stages": [
-				{{ module "wait.stage.module" "stageOrder" 1 "stageName" "Waiting for Production" "waitTime" 6 }},
+				{{ module "wait.stage.module" "stageOrder" 1 "stageName" "Waiting for Production" "waitTime" 4 }},
 				{{ module "k8s.deploymanifest2.stage.module" "artifactPath" "acmeair/acme-air-dep.yml" "expectedArtifactId" "some-artifact-id" "stageOrder" 2 "previousStage" 1 "stageName" "DeployToProd" "reference" "https://api.github.com/repos/garreeoke/spin-apps/contents/acmeair/acme-air-dep.yml" }}
 			],
 			"triggers": [

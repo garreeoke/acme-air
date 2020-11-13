@@ -17,7 +17,7 @@
 			"limitConcurrent": false,
 			"parameterConfig": [
 				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "" "paramDescription" "ticket number please" }},
-				{{ module "param_config.module" "paramName" "environment_name" "paramDefaultValue" "Prod" "paramDescription" "What environment is this deploying to?" }}
+				{{ module "param_config.module" "paramName" "task_id" "paramDefaultValue" "Prod" "paramDescription" "What environment is this deploying to?" }}
 			],
 			"stages": [
 				{{ module "wait.stage.module" "stageOrder" 1 "stageName" "Waiting for Production" "waitTime" 5 }},
@@ -35,7 +35,7 @@
 			"limitConcurrent": false,
 			"parameterConfig": [
 				{{ module "param_config.module" "paramName" "ticket" "paramDefaultValue" "${trigger['tag']}" "paramDescription" "PR number" }},
-				{{ module "param_config.module" "paramName" "environment_name" "paramDefaultValue" "Dev" "paramDescription" "What environment is this deploying to?" }},
+				{{ module "param_config.module" "paramName" "task_id" "paramDefaultValue" "Dev" "paramDescription" "What environment is this deploying to?" }},
 				{{ module "param_config.module" "paramName" "workspace" "paramDefaultValue" "${trigger['tag']}" }}
 			],
 			"stages": [

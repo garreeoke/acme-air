@@ -53,7 +53,7 @@ var dbtype = process.env.dbtype || "mongo";
 const client = require('prom-client');
 const collectDefaultMetrics = client.collectDefaultMetrics;
 const Registry = client.Registry;
-const regsiter = new Registry();
+const register = new Registry();
 collectDefaultMetrics({ register });
 logger.info("metrics configured")
 

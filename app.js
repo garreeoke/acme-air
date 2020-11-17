@@ -126,7 +126,7 @@ router.get('/loader/load', startLoadDatabase);
 router.get('/loader/query', loader.getNumConfiguredCustomers);
 router.get('/checkstatus', checkStatus);
 // Prometheus
-//router.get('/metrics', metrics);
+router.get('/metrics', metrics);
 Prometheus.injectMetricsRoute(router)
 Prometheus.startCollection()
 
@@ -151,10 +151,10 @@ else
 	initDB();
 
 // Prometheus
-//function metrics(req, res) {
-//	res.set('Content-Type', client.register.contentType)
-//	res.end(client.register.metrics())
-//}
+function metrics(req, res) {
+	res.set('Content-Type', client.register.contentType)
+	res.end(client.register.metrics())
+}
 
 function checkStatus(req, res){
 	res.sendStatus(200);

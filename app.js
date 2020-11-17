@@ -51,12 +51,10 @@ var dbtype = process.env.dbtype || "mongo";
 
 // Metrics
 const client = require('prom-client');
-const collectDefaultMetrics = client.collectDefaultMetrics;
-collectDefaultMetrics({ prefix: 'acme_air'});
+const register = new client.Registry()
+//collectDefaultMetrics({ prefix: 'acme_air'});
+client.collectDefaultMetrics({ register });
 
-//const Registry = client.Registry;
-//const register = new client.Registry();
-//collectDefaultMetrics({ register });
 logger.info("metrics configured")
 
 // Calculate the backend datastore type if run inside BLuemix or cloud foundry
@@ -83,9 +81,9 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser')
 
 // Prometheus
-//var Prometheus = require('./prometheus/prometheus.js')
-//app.use(Prometheus.requestCounters);
-//app.use(Prometheus.responseCounters);
+var Prometheus = require('./prometheus/prometheus.js')
+app.use(Prometheus.requestCounters);
+app.use(Prometheus.responseCounters);
 
 app.use(express.static(__dirname + '/public'));     	// set the static files location /public/img will be /img for users
 if (settings.useDevLogger)
@@ -127,10 +125,10 @@ router.get('/config/countAirports' , routes.countAirports);
 router.get('/loader/load', startLoadDatabase);
 router.get('/loader/query', loader.getNumConfiguredCustomers);
 router.get('/checkstatus', checkStatus);
-// Prometheus
+// Metrics
 router.get('/metrics', metrics);
-//Prometheus.injectMetricsRoute(router)
-//Prometheus.startCollection()
+Prometheus.injectMetricsRoute(router)
+Prometheus.startCollection()
 
 if (authService && authService.hystrixStream)
 	app.get('/rest/api/hystrix.stream', authService.hystrixStream);

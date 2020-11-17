@@ -52,9 +52,11 @@ var dbtype = process.env.dbtype || "mongo";
 // Metrics
 const client = require('prom-client');
 const collectDefaultMetrics = client.collectDefaultMetrics;
+collectDefaultMetrics({ prefix: 'acme_air'});
+
 //const Registry = client.Registry;
-const register = new client.Registry();
-collectDefaultMetrics({ register });
+//const register = new client.Registry();
+//collectDefaultMetrics({ register });
 logger.info("metrics configured")
 
 // Calculate the backend datastore type if run inside BLuemix or cloud foundry

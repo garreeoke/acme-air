@@ -52,8 +52,8 @@ var dbtype = process.env.dbtype || "mongo";
 // Metrics
 const client = require('prom-client');
 const collectDefaultMetrics = client.collectDefaultMetrics;
-const Registry = client.Registry;
-const register = new Registry();
+//const Registry = client.Registry;
+const register = new client.Registry();
 collectDefaultMetrics({ register });
 logger.info("metrics configured")
 
@@ -81,9 +81,9 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser')
 
 // Prometheus
-var Prometheus = require('./prometheus/prometheus.js')
-app.use(Prometheus.requestCounters);
-app.use(Prometheus.responseCounters);
+//var Prometheus = require('./prometheus/prometheus.js')
+//app.use(Prometheus.requestCounters);
+//app.use(Prometheus.responseCounters);
 
 app.use(express.static(__dirname + '/public'));     	// set the static files location /public/img will be /img for users
 if (settings.useDevLogger)
@@ -127,8 +127,8 @@ router.get('/loader/query', loader.getNumConfiguredCustomers);
 router.get('/checkstatus', checkStatus);
 // Prometheus
 router.get('/metrics', metrics);
-Prometheus.injectMetricsRoute(router)
-Prometheus.startCollection()
+//Prometheus.injectMetricsRoute(router)
+//Prometheus.startCollection()
 
 if (authService && authService.hystrixStream)
 	app.get('/rest/api/hystrix.stream', authService.hystrixStream);
@@ -152,6 +152,7 @@ else
 
 // Prometheus
 function metrics(req, res) {
+	logger.info("trying to get metrics")
 	res.set('Content-Type', client.register.contentType)
 	res.end(client.register.metrics())
 }

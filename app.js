@@ -52,7 +52,6 @@ var dbtype = process.env.dbtype || "mongo";
 // Metrics
 const client = require('prom-client');
 const register = new client.Registry()
-//collectDefaultMetrics({ prefix: 'acme_air'});
 client.collectDefaultMetrics({ register });
 
 logger.info("metrics configured")
@@ -84,6 +83,8 @@ var cookieParser = require('cookie-parser')
 var Prometheus = require('./prometheus/prometheus.js')
 app.use(Prometheus.requestCounters);
 app.use(Prometheus.responseCounters);
+app.use(Prometheus.numOfRequests)
+app.use(Prometheus.pathsTaken)
 
 app.use(express.static(__dirname + '/public'));     	// set the static files location /public/img will be /img for users
 if (settings.useDevLogger)

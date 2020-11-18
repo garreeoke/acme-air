@@ -57,10 +57,10 @@ pipeline {
           sh('''
             git checkout --track origin/master
             sed -i -E "s/acmenode:.*/$tag/" acmeair/acme-air-dep.yml
-            sed -i -E "s/acmenode:.*/$tag/" acmeair/acme-air-canary.yml
+            sed -i -E "s/jenkinsbuild: .*/${BUILD_NUMBER}/" acmeair/acme-air-dep.yml
             git config --global user.email "garreeoke@gmail.com"
             git config --global user.name "$GIT_AUTH_USR"
-            git add acmeair/acme-air-dep.yml acmeair/acme-air-canary.yml
+            git add acmeair/acme-air-dep.yml
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git config --local credential.helper "!f() { echo username=\\$GIT_AUTH_USR; echo password=\\$GIT_AUTH_PSW; }; f"
             git push 

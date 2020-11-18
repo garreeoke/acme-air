@@ -80,11 +80,9 @@ var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser')
 
 // Prometheus
-logger.info("PROM")
 var Prometheus = require('./prometheus/prometheus.js')
 app.use(Prometheus.requestCounters);
 app.use(Prometheus.responseCounters);
-logger.info("PROM2")
 
 app.use(express.static(__dirname + '/public'));     	// set the static files location /public/img will be /img for users
 if (settings.useDevLogger)

@@ -50,10 +50,11 @@ if (authServiceLocation)
 var dbtype = process.env.dbtype || "mongo";
 
 // Metrics
-//const client = require('prom-client');
-//const collectDefaultMetrics = client.collectDefaultMetrics;
-//collectDefaultMetrics({ timeout: 5000 });
-//logger.info("metrics configured")
+const client = require('prom-client');
+const register = new client.Registry()
+client.collectDefaultMetrics({ register });
+
+logger.info("metrics configured")
 
 // Calculate the backend datastore type if run inside BLuemix or cloud foundry
 if(process.env.VCAP_SERVICES){
@@ -123,8 +124,8 @@ router.get('/config/countAirports' , routes.countAirports);
 router.get('/loader/load', startLoadDatabase);
 router.get('/loader/query', loader.getNumConfiguredCustomers);
 router.get('/checkstatus', checkStatus);
-// Prometheus
-//router.get('/metrics', metrics);
+// Metrics
+router.get('/metrics', metrics);
 Prometheus.injectMetricsRoute(router)
 Prometheus.startCollection()
 
@@ -149,10 +150,11 @@ else
 	initDB();
 
 // Prometheus
-//function metrics(req, res) {
-//	res.set('Content-Type', client.register.contentType)
-//	res.end(client.register.metrics())
-//}
+function metrics(req, res) {
+	logger.info("trying to get metrics")
+	res.set('Content-Type', client.register.contentType)
+	res.end(client.register.metrics())
+}
 
 function checkStatus(req, res){
 	res.sendStatus(200);

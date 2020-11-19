@@ -21,7 +21,7 @@ pipeline {
         sh "mkdir ./node-master"
         dir("node-master") {
           timeout(time: 3, unit: 'MINUTES') {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/node-master.git']]])
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github-token', url: 'https://github.com/garreeoke/node-master.git']]])
           }
         }
       }
@@ -52,15 +52,15 @@ pipeline {
         sh "mkdir ./spin-apps"
         dir("${env.WORKSPACE}/spin-apps") {
           timeout(time: 3, unit: 'MINUTES') {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/spin-apps.git']]])
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github-token', url: 'https://github.com/garreeoke/spin-apps.git']]])
           }
           sh('''
             git checkout --track origin/master
             sed -i -E "s/acmenode:.*/$tag/" acmeair/acme-air-dep.yml
-            sed -i -E "s/acmenode:.*/$tag/" acmeair/acme-air-canary.yml
+            sed -i -E "s/jenkinsbuild: .*/${BUILD_NUMBER}/" acmeair/acme-air-dep.yml
             git config --global user.email "garreeoke@gmail.com"
             git config --global user.name "$GIT_AUTH_USR"
-            git add acmeair/acme-air-dep.yml acmeair/acme-air-canary.yml
+            git add acmeair/acme-air-dep.yml
             git commit -m "[Jenkins CI] updating image to acmenode:$tag"
             git config --local credential.helper "!f() { echo username=\\$GIT_AUTH_USR; echo password=\\$GIT_AUTH_PSW; }; f"
             git push 

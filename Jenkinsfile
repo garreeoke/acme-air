@@ -52,7 +52,7 @@ pipeline {
         sh "mkdir ./spin-apps"
         dir("${env.WORKSPACE}/spin-apps") {
           timeout(time: 3, unit: 'MINUTES') {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github', url: 'https://github.com/garreeoke/spin-apps.git']]])
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'garreeoke-github-token', url: 'https://github.com/garreeoke/spin-apps.git']]])
           }
           sh('''
             git checkout --track origin/master
